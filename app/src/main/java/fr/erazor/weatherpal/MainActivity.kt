@@ -1,4 +1,4 @@
 package fr.erazor.weatherpal
 
-class ViewModelModule {
+class MainActivity {
 }
