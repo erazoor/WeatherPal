@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">WeatherPal</string>
+    <string name="xx_km_h">XX Km/h</string>
+    <string name="wind">wind</string>
 </resources>
