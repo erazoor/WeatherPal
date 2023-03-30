@@ -45,15 +45,16 @@
                     android:id="@+id/location"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="London"
+                    android:text=""
                     android:textFontWeight="400"
                     android:textSize="14sp"
                     android:textColor="#000000"
                     android:textAlignment="center"/>
                 <TextView
+                    android:id="@+id/temperature"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="XX °C"
+                    android:text=""
                     android:textAlignment="center"
                     android:textColor="#000000"
                     android:textFontWeight="800"

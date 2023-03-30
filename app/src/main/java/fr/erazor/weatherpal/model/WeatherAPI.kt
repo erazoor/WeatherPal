@@ -10,8 +10,8 @@ interface WeatherAPI {
 
     @GET("/v1/forecast")
     fun getCurrentWeather(
-        @Query("latitude") latitude: Double,
-        @Query("longitude") longitude: Double
+        @Query("latitude") latitude: Int,
+        @Query("longitude") longitude: Int,
     ): Call<WeatherData>
 
     companion object {
