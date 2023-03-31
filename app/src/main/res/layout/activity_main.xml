@@ -106,85 +106,6 @@
         android:alpha=".65"
         android:layout_marginTop="60dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_gravity="center"
-            android:gravity="center"
-            >
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:paddingEnd="25dp"
-                tools:ignore="RtlSymmetry,UseCompoundDrawables">
-
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/baseline_umbrella_24"
-                    android:id="@+id/wind"
-                    android:contentDescription="@string/wind" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/xx_km_h"
-                    />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:paddingEnd="25dp"
-                tools:ignore="RtlSymmetry,UseCompoundDrawables">
-
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/baseline_umbrella_24"
-                    android:id="@+id/humidity"
-                    android:contentDescription="@string/wind" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="XX %"
-                    />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_gravity="center"
-                android:gravity="center"
-                tools:ignore="RtlSymmetry,UseCompoundDrawables">
-
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/baseline_umbrella_24"
-                    android:id="@+id/X"
-                    android:contentDescription="@string/wind" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/xx_km_h"
-                    />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
     </androidx.cardview.widget.CardView>
 
     <HorizontalScrollView
@@ -278,6 +199,83 @@
 
 
     </HorizontalScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingEnd="25dp"
+            tools:ignore="RtlSymmetry,UseCompoundDrawables">
+
+            <ImageView
+                android:id="@+id/wind"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="@string/wind"
+                android:src="@drawable/baseline_umbrella_24" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/xx_km_h" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingEnd="25dp"
+            tools:ignore="RtlSymmetry,UseCompoundDrawables">
+
+            <ImageView
+                android:id="@+id/humidity"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="@string/wind"
+                android:src="@drawable/baseline_umbrella_24" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="XX %" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            tools:ignore="RtlSymmetry,UseCompoundDrawables">
+
+            <ImageView
+                android:id="@+id/X"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="@string/wind"
+                android:src="@drawable/baseline_umbrella_24" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/xx_km_h" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 
 </LinearLayout>
