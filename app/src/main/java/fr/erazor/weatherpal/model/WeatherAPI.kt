@@ -8,10 +8,15 @@ import retrofit2.http.Query
 
 interface WeatherAPI {
     @GET("/v1/forecast")
-    fun getCurrentWeather(
+    fun getCurrentLocation(
         @Query("latitude") latitude: Int,
         @Query("longitude") longitude: Int,
     ): Call<WeatherData>
+
+    fun getCurrentWeather(
+        @Query("current_weather") current_weather: Int,
+    ): Call<WeatherData>
+
 
     companion object {
         private const val BASE_URL = "https://api.open-meteo.com/"

@@ -14,11 +14,8 @@ class MainActivity : AppCompatActivity() {
         val temp: TextView = findViewById(R.id.temperature)
         temp.text = "°C"
 
-        val dataViewModel = DataViewModel(this)
-        val userLat = dataViewModel.getGPSLocation(this)[0]
-        val userLong = dataViewModel.getGPSLocation(this)[1]
-        val city = dataViewModel.getCityName(userLat, userLong)
-        println("$city $userLat $userLong")
+        val city: String? = intent.getStringExtra("city")
+        println("$city $this")
 
         val loc: TextView = findViewById(R.id.location)
         loc.text = city
