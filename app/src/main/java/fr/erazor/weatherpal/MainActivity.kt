@@ -1,15 +1,18 @@
 package fr.erazor.weatherpal
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import fr.erazor.weatherpal.viewmodel.CardViewModel
 import fr.erazor.weatherpal.viewmodel.DataViewModel
 import fr.erazor.weatherpal.viewmodel.TimeViewModel
 import fr.erazor.weatherpal.viewmodel.WeatherViewModel
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -46,10 +49,39 @@ class MainActivity : AppCompatActivity() {
             date.getDate()
             date.date.observe(this) {
                 dateText.text = "$it"
-                println("Date : $it")
             }
         }
 
+        fun changeWindDirection() {
+            val windDirectionText: TextView = findViewById(R.id.windDirection)
+            val windDirection = WeatherViewModel(this)
+            windDirection.getWindDirection()
+            windDirection.windDirection.observe(this) {
+                windDirectionText.text = "$it"
+            }
+        }
+
+        fun changeWindSpeed() {
+            val windSpeedText: TextView = findViewById(R.id.windSpeed)
+            val windSpeed = WeatherViewModel(this)
+            windSpeed.getWindSpeed()
+            windSpeed.windSpeed.observe(this) {
+                windSpeedText.text = "$it km/h"
+            }
+        }
+
+        fun changeHumidity() {
+            val humidityText: TextView = findViewById(R.id.humidityValue)
+            val humidity = WeatherViewModel(this)
+            humidity.getHumidity()
+            humidity.humidity.observe(this) {
+                humidityText.text = "$it %"
+            }
+        }
+
+        changeWindSpeed()
+        changeHumidity()
+        changeWindDirection()
         changeDate()
         changeCity()
         changeBackground()

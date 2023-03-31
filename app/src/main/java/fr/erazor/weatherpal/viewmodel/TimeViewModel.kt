@@ -1,12 +1,11 @@
 package fr.erazor.weatherpal.viewmodel
 
 class TimeViewModel {
-    fun getHour(): Int {
+    private fun getHour(): Int {
         val currentTime = System.currentTimeMillis()
         val hour = (currentTime / 1000 / 60 / 60) % 24
         return hour.toInt()
     }
-
 
     fun getTimeRange(): Int {
         val currentTime = getHour()
@@ -19,5 +18,10 @@ class TimeViewModel {
             in endDay..endAfternoon -> 2
             else -> 3
         }
+    }
+
+    fun swapWeatherStatus() {
+        // Create a function that fetch for the weather status (cloudy, rainy ...)
+        // and swaps the image having the id "weatherStatus" for the one that refers to the good weather
     }
 }

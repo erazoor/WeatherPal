@@ -2,14 +2,22 @@ package fr.erazor.weatherpal.model
 
 import com.google.gson.annotations.SerializedName
 
-data class WeatherData(
-    @SerializedName("temp") val temperature: Double,
-    @SerializedName("feels_like") val feelsLike: Double,
-    @SerializedName("pressure") val pressure: Double,
-    @SerializedName("humidity") val humidity: Int,
-    @SerializedName("wind_speed") val windSpeed: Double,
-    @SerializedName("wind_deg") val windDirection: Double,
-    @SerializedName("weather") val weather: List<WeatherDescription>
+data class Weather(
+    val latitude: Float,
+    val longitude: Float,
+    val elevation: Float,
+    val timezone: String,
+    @SerializedName("timezone_abbreviation") val timeZoneAbbreviation: String,
+    val current_weather: CurrentWeatherData,
+    val hourly: HourlyData,
+)
+
+data class HourlyData(
+    @SerializedName("time") val timestamp: List<String>,
+    @SerializedName("temperature_2m") val temperature: List<Float>,
+    @SerializedName("precipitation_probability") val precipitationProbability: List<Int>,
+    @SerializedName("weathercode") val weatherCode: List<Int>,
+    @SerializedName("relativehumidity_2m") val relativeHumidity: List<Int>,
 )
 
 data class CurrentWeather(
@@ -19,6 +27,7 @@ data class CurrentWeather(
 data class CurrentWeatherData(
     @SerializedName("temperature") val temperature: Float,
     @SerializedName("windspeed") val windSpeed: Float,
+    @SerializedName("winddirection") val windDirection: Double,
     @SerializedName("time") val time: String,
     )
 
