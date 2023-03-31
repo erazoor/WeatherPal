@@ -4,45 +4,56 @@ import android.os.Bundle
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import fr.erazor.weatherpal.viewmodel.DataViewModel
 import fr.erazor.weatherpal.viewmodel.TimeViewModel
 import fr.erazor.weatherpal.viewmodel.WeatherViewModel
 
 class MainActivity : AppCompatActivity() {
-
-    private lateinit var weatherViewModel: WeatherViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val temp: TextView = findViewById(R.id.temperature)
-        temp.text = "°C"
+        fun changeCity() {
+            val city: String? = intent.getStringExtra("city")
+            val loc: TextView = findViewById(R.id.location)
 
-        val city: String? = intent.getStringExtra("city")
-        val loc: TextView = findViewById(R.id.location)
-        loc.text = city
-
-        val time = TimeViewModel().getTimeRange()
-        val background = findViewById<LinearLayout>(R.id.background)
-
-        when (time) {
-            1 -> background.setBackgroundResource(R.drawable.light)
-            2 -> background.setBackgroundResource(R.drawable.crep)
-            else -> background.setBackgroundResource(R.drawable.dark)
+            loc.text = city
         }
 
-        weatherViewModel = ViewModelProvider(this).get(WeatherViewModel::class.java)
+        fun changeBackground() {
+            val background = findViewById<LinearLayout>(R.id.background)
 
-        // observe the temperature LiveData object
-        weatherViewModel.temperature.observe(this, Observer {
-            temp.text = it
-        })
+            when (TimeViewModel().getTimeRange()) {
+                1 -> background.setBackgroundResource(R.drawable.light)
+                2 -> background.setBackgroundResource(R.drawable.crep)
+                else -> background.setBackgroundResource(R.drawable.dark)
+            }
+        }
 
-        // call the getWeather() function to fetch the temperature
-        weatherViewModel.getWeather()
+        fun changeTemp() {
+            val temperature: TextView = findViewById(R.id.temperature)
+            val temp = WeatherViewModel(this)
+            temp.getTemperature()
+            temp.temperature.observe(this) {
+                temperature.text = "$it °C"
+            }
+        }
+
+        fun changeDate() {
+            val dateText: TextView = findViewById(R.id.date)
+            val date = WeatherViewModel(this)
+            date.getDate()
+            date.date.observe(this) {
+                dateText.text = "$it"
+                println("Date : $it")
+            }
+        }
+
+        changeDate()
+        changeCity()
+        changeBackground()
+        changeTemp()
     }
 }
 

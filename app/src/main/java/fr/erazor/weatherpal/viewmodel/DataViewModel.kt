@@ -10,6 +10,7 @@ import android.os.Bundle
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
+import fr.erazor.weatherpal.MainActivity
 
 class DataViewModel(context: Context): ViewModel() , LocationListener {
     private val locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
@@ -48,11 +49,6 @@ class DataViewModel(context: Context): ViewModel() , LocationListener {
             }
         }
         return listOf(latitude, longitude)
-    }
-
-    fun getTemperature(): String {
-
-        return "°C"
     }
 
     override fun onLocationChanged(p0: Location) {

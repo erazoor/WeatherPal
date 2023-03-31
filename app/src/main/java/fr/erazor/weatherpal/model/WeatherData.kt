@@ -12,6 +12,16 @@ data class WeatherData(
     @SerializedName("weather") val weather: List<WeatherDescription>
 )
 
+data class CurrentWeather(
+    @SerializedName("current_weather") val currentWeather: CurrentWeatherData
+)
+
+data class CurrentWeatherData(
+    @SerializedName("temperature") val temperature: Float,
+    @SerializedName("windspeed") val windSpeed: Float,
+    @SerializedName("time") val time: String,
+    )
+
 data class WeatherDescription(
     @SerializedName("description") val description: String,
     @SerializedName("icon") val icon: String

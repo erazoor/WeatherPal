@@ -13,10 +13,12 @@ interface WeatherAPI {
         @Query("longitude") longitude: Int,
     ): Call<WeatherData>
 
+    @GET("/v1/forecast")
     fun getCurrentWeather(
-        @Query("current_weather") current_weather: Int,
-    ): Call<WeatherData>
-
+        @Query("latitude") latitude: Double,
+        @Query("longitude") longitude: Double,
+        @Query("current_weather") current_weather: String = "true",
+    ): Call<CurrentWeather>
 
     companion object {
         private const val BASE_URL = "https://api.open-meteo.com/"
