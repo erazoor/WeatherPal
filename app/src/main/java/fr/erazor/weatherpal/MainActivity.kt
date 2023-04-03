@@ -2,6 +2,7 @@ package fr.erazor.weatherpal
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -17,13 +18,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        fun changeCity() {
-            val city: String? = intent.getStringExtra("city")
-            val loc: TextView = findViewById(R.id.location)
-
-            loc.text = city
-        }
-
         fun changeBackground() {
             val background = findViewById<LinearLayout>(R.id.background)
 
@@ -32,6 +26,28 @@ class MainActivity : AppCompatActivity() {
                 2 -> background.setBackgroundResource(R.drawable.crep)
                 else -> background.setBackgroundResource(R.drawable.dark)
             }
+        }
+
+        fun changeWeatherStatus() {
+            val weatherStatus: ImageView = findViewById(R.id.weatherStatus)
+            val status = WeatherViewModel(this)
+            status.getWeatherStatus()
+            status.weatherStatus.observe(this) {
+                when (it.toInt()) {
+                    1 -> weatherStatus.setImageResource(R.drawable.sun)
+                    2 -> weatherStatus.setImageResource(R.drawable.clouds)
+                    3 -> weatherStatus.setImageResource(R.drawable.sun_clouds_rain)
+                    4 -> weatherStatus.setImageResource(R.drawable.clouds_snow)
+                    5 -> weatherStatus.setImageResource(R.drawable.lightning)
+                }
+            }
+        }
+
+        fun changeCity() {
+            val city: String? = intent.getStringExtra("city")
+            val loc: TextView = findViewById(R.id.location)
+
+            loc.text = city
         }
 
         fun changeTemp() {
@@ -79,6 +95,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        changeWeatherStatus()
         changeWindSpeed()
         changeHumidity()
         changeWindDirection()

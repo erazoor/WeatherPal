@@ -17,6 +17,7 @@ class WeatherViewModel(context: Context) : ViewModel() {
     private val _windDirection = MutableLiveData<String>()
     private val _humidity = MutableLiveData<String>()
     private val _windSpeed = MutableLiveData<String>()
+    private val _weatherStatus = MutableLiveData<String>()
 
     val temperature: LiveData<String>
         get() = _temperature
@@ -32,6 +33,9 @@ class WeatherViewModel(context: Context) : ViewModel() {
 
     val windSpeed: LiveData<String>
         get() = _windSpeed
+
+    val weatherStatus: LiveData<String>
+        get() = _weatherStatus
 
 
     private val location = DataViewModel(context).getGPSLocation(context)
@@ -80,6 +84,28 @@ class WeatherViewModel(context: Context) : ViewModel() {
         scope.launch {
             val humidity = hourlyData.execute().body()?.hourly?.relativeHumidity?.get(0) ?: 0.0
             _humidity.postValue(humidity.toString())
+        }
+    }
+
+    fun getWeatherStatus() {
+        scope.launch {
+            val weatherStatus = when (hourlyData.execute().body()?.hourly?.weatherCode?.get(0) ?: 0) {
+                0 -> 1 // "Ensoleillé"
+                1, 2, 3 -> 2 // "Nuageux"
+                45, 48 -> 2 // "Brouillard"
+                51, 53, 55 -> 2 // "Bruine"
+                56, 57 -> 2 // "Bruine verglaçante"
+                61, 63, 65 -> 3 // "Pluvieux"
+                66, 67 -> 3 // "Pluie verglaçante"
+                71, 73, 75 -> 4 // "Neige"
+                77 -> 4 // "Grains de neige"
+                80, 81, 82 -> 3 // "Averses de pluie"
+                85, 86 -> 4 // "Averses de neige"
+                95 -> 5 // "Orage"
+                96, 99 -> 5 // "Orage avec grêle"
+                else -> 1 // "Temps inconnu"
+            }
+            _weatherStatus.postValue(weatherStatus.toString())
         }
     }
 }
